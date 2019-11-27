@@ -50,7 +50,7 @@ public class db {
 	      return s.substring( 0, 2 * iWantLen );
 	    return s;
 	  }
-         
+        /*
 	private void showTable(ResultSet rs) throws SQLException {
 		ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
 		  int i, n = rsmd.getColumnCount();
@@ -71,7 +71,7 @@ public class db {
 		  }
 	}
         
-	/*public void insertHost(Host host) throws SQLException {
+	public void insertHost(Host host) throws SQLException {
 	    Statement stmt = conn.createStatement();
 	    String befehl = "INSERT INTO hosts(ipAdresse, name,macAdresse) VALUES('" +
 	    host.ipAdresse + "','" + host.name + "','" + host.macAdresse+ "')";
@@ -120,7 +120,7 @@ public class db {
 	    String befehl = "INSERT INTO isactive(active, resources_idresources) VALUES('" + active.active + "','" + active.resources_idresources + "')";
 	    int count = stmt.executeUpdate(befehl);
 	    //System.out.println("Anzahl eingefuegter Datensätze: " + count);
-        }*/
+        }
         
         public void setActive(String id, int active) throws SQLException {
             Statement stmt = conn.createStatement();
@@ -158,7 +158,7 @@ public class db {
                 colNames[i] = col_name;
             }
             return colNames;
-        }
+        }*/
         
 	public static void main(String[] args) throws SQLException {
             
