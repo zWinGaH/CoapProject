@@ -164,8 +164,8 @@ public static db db = new db("coapproject");
 
     private void registrierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrierButtonActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        regI.setVisible(true);
+        //this.setVisible(false);
+        //regI.setVisible(true);
     }//GEN-LAST:event_registrierButtonActionPerformed
 
     public static boolean isValidEmailAddress(String email) {
