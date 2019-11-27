@@ -46,7 +46,7 @@ public class LoginInterface extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel1.setText("Passwort:");
+        jLabel1.setText("Password:");
 
         emailtext.setText("example.example");
 
@@ -69,7 +69,7 @@ public class LoginInterface extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setText("Email:");
 
-        passworttext.setText("Passwort");
+        passworttext.setText("Password");
         passworttext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passworttextActionPerformed(evt);
@@ -79,7 +79,7 @@ public class LoginInterface extends javax.swing.JFrame {
         registrierButton.setBackground(new java.awt.Color(0, 0, 0));
         registrierButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         registrierButton.setForeground(new java.awt.Color(255, 255, 255));
-        registrierButton.setText("Registrieren");
+        registrierButton.setText("New User");
         registrierButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrierButtonActionPerformed(evt);
@@ -103,7 +103,7 @@ public class LoginInterface extends javax.swing.JFrame {
                         .addComponent(passworttext, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(failtext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(loginButton)
