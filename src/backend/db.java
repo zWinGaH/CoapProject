@@ -27,7 +27,7 @@ public class db {
             DriverManager.getConnection("jdbc:mysql://localhost/" + dbname + "?" +
                     "user=root&password=1234&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"); 
             
-            System.out.println("connected to database");
+            System.out.println("connected to database ...");
             
         } catch (SQLException ex) {
             // handle any errors
