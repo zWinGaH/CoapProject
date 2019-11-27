@@ -5,6 +5,7 @@
  */
 package frontend;
 
+import backend.db;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
@@ -14,12 +15,16 @@ import javax.mail.internet.InternetAddress;
  */
 public class LoginInterface extends javax.swing.JFrame {
 
-    //RessourcenInterface rI;
-    //LiveDataInterface lI;
+RegistrationInterface regI;
+public static db db = new db("coapdb");    
+//RessourcenInterface rI;
+//LiveDataInterface lI;
     
     public LoginInterface() {
         initComponents();
         this.setLocation(800, 400);
+        
+        regI = new RegistrationInterface();
         //rI = new RessourcenInterface();
         // = new LiveDataInterface();
     }
@@ -161,13 +166,13 @@ public class LoginInterface extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String email = emailtext.getText() + jLabel2.getText();
-        if(isValidEmailAddress(email)){
+        /*if(isValidEmailAddress(email)){
             //rI.setVisible(true);
             this.setVisible(false);
             //lI.email = email;
         } else{
             failtext.setText("no valid email");
-        }
+        }*/
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void passworttextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passworttextActionPerformed
@@ -176,6 +181,8 @@ public class LoginInterface extends javax.swing.JFrame {
 
     private void registrierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrierButtonActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        regI.setVisible(true);
     }//GEN-LAST:event_registrierButtonActionPerformed
 
     public static boolean isValidEmailAddress(String email) {
