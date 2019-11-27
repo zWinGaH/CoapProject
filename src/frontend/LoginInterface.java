@@ -16,7 +16,7 @@ import javax.mail.internet.InternetAddress;
 public class LoginInterface extends javax.swing.JFrame {
 
 RegistrationInterface regI;
-public static db db = new db("coapdb");    
+public static db db = new db("coapproject");    
 //RessourcenInterface rI;
 //LiveDataInterface lI;
     
