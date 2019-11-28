@@ -161,7 +161,16 @@ public static dbTable users;
         String email = emailtext.getText();
         String password = passwordtext.getText();
         
-        System.out.println(users.columnCount);
+        for (String rows[] : users.rowNames){
+            System.out.println(rows[1]);
+            System.out.println(email);
+            
+            if(rows[1] == email || rows[2] == email){
+                System.out.println("true");
+            }else{
+                System.out.println("false");
+            }
+        }
         /*if(isValidEmailAddress(email)){
             //rI.setVisible(true);
             this.setVisible(false);
