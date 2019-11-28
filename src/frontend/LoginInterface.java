@@ -72,7 +72,7 @@ public static dbTable users;
             }
         });
 
-        loginButton.setBackground(new java.awt.Color(0, 0, 255));
+        loginButton.setBackground(new java.awt.Color(0, 0, 0));
         loginButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
