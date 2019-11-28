@@ -38,6 +38,14 @@ public class db {
             //System.out.println("VendorError: " + ex.getErrorCode());
         }
     }
+    
+    public static void insertUser(user user) throws SQLException {
+	    Statement stmt = conn.createStatement();
+	    String query = "INSERT INTO user(username, email, password) VALUES('" +
+	    user.username + "','" + user.email + "','" + user.password + "')";
+	    int count = stmt.executeUpdate(query);
+	    System.out.println("Anzahl eingefuegter Datensätze: " + count); 
+    }
     /*
 	 private static final String extendStringTo14( String s )
 	  {

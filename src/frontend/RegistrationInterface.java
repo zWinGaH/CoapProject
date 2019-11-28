@@ -8,7 +8,7 @@ package frontend;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import backend.*;
 /**
  *
  * @author Peaq PNB P2015
@@ -18,6 +18,8 @@ public class RegistrationInterface extends javax.swing.JFrame {
     /**
      * Creates new form RegistrationInterface
      */
+    public user newuser;
+    
     public RegistrationInterface() {
         initComponents();
         this.setLocation(550, 300);
@@ -37,7 +39,7 @@ public class RegistrationInterface extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         usernameText = new javax.swing.JTextField();
-        EMailText = new javax.swing.JTextField();
+        emailText = new javax.swing.JTextField();
         passwordText = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
         registrateButton = new javax.swing.JButton();
@@ -59,15 +61,14 @@ public class RegistrationInterface extends javax.swing.JFrame {
         usernameText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         usernameText.setText("username");
 
-        EMailText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        EMailText.setText("EMail");
-        EMailText.addActionListener(new java.awt.event.ActionListener() {
+        emailText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        emailText.setText("EMail");
+        emailText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EMailTextActionPerformed(evt);
+                emailTextActionPerformed(evt);
             }
         });
 
-        passwordText.setEditable(false);
         passwordText.setBackground(new java.awt.Color(255, 255, 255));
         passwordText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         passwordText.setText("password");
@@ -125,7 +126,7 @@ public class RegistrationInterface extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(usernameText)
                             .addComponent(passwordText)
-                            .addComponent(EMailText, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(68, 68, 68))
         );
         jPanel1Layout.setVerticalGroup(
@@ -139,7 +140,7 @@ public class RegistrationInterface extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EMailText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -166,9 +167,9 @@ public class RegistrationInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EMailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMailTextActionPerformed
+    private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EMailTextActionPerformed
+    }//GEN-LAST:event_emailTextActionPerformed
 
     private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
         // TODO add your handling code here:
@@ -176,22 +177,16 @@ public class RegistrationInterface extends javax.swing.JFrame {
 
     private void registrateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrateButtonActionPerformed
         //Insert user into database
-
-
-
-
-
-
-
-
-
-
-
-
+        newuser = new user(usernameText.getText(), emailText.getText(), passwordText.getText());
+        try {
+            db.insertUser(newuser);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrationInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        backButtonActionPerformed(evt);
     }//GEN-LAST:event_registrateButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        System.out.println("test");
         try {
             this.setVisible(false);
             new LoginInterface().setVisible(true);
@@ -236,8 +231,8 @@ public class RegistrationInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField EMailText;
     private javax.swing.JButton backButton;
+    private javax.swing.JTextField emailText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -52,6 +52,7 @@ public static table users;
         passwordtext = new javax.swing.JTextField();
         registrierButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        failLabelText = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
 
@@ -104,29 +105,43 @@ public static table users;
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Login");
 
+        failLabelText.setEditable(false);
+        failLabelText.setBackground(new java.awt.Color(255, 255, 255));
+        failLabelText.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        failLabelText.setForeground(new java.awt.Color(255, 51, 51));
+        failLabelText.setText(" ");
+        failLabelText.setBorder(null);
+        failLabelText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                failLabelTextActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(loginButton)
-                        .addGap(28, 28, 28)
-                        .addComponent(registrierButton))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(emailtext, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordtext, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(failLabelText, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(154, 154, 154)
+                            .addComponent(jLabel2))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(79, 79, 79)
+                            .addComponent(loginButton)
+                            .addGap(28, 28, 28)
+                            .addComponent(registrierButton))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(37, 37, 37)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel1))
+                            .addGap(47, 47, 47)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(emailtext, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(passwordtext, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -142,11 +157,13 @@ public static table users;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(failLabelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrierButton)
                     .addComponent(loginButton))
-                .addGap(26, 26, 26))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,19 +183,15 @@ public static table users;
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        String email = emailtext.getText();
-        String password = passwordtext.getText();
         
-        for (String rows[] : users.rowNames){
-            System.out.println(rows[1]);
-            System.out.println(email);
+        if (authorised()){
+            this.setVisible(false);
+            new MainPageInterface().setVisible(true);
+        }else
+            failLabelText.setText("Wrong email or password!");
             
-            if(rows[1] == email || rows[2] == email){
-                System.out.println("true");
-            }else{
-                System.out.println("false");
-            }
-        }
+        
+        
         /*if(isValidEmailAddress(email)){
             //rI.setVisible(true);
             this.setVisible(false);
@@ -202,6 +215,23 @@ public static table users;
         // TODO add your handling code here:
     }//GEN-LAST:event_emailtextActionPerformed
 
+    private void failLabelTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_failLabelTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_failLabelTextActionPerformed
+
+    public boolean authorised(){
+        for (String rows[] : users.rowNames){
+            String email = emailtext.getText();
+            String password = passwordtext.getText();
+            
+            if(rows[1].compareTo(email) == 0 || rows[2].compareTo(email) == 0){
+                if(rows[3].compareTo(password) == 0)
+                    return true;
+            }
+        }
+        return false;
+    }
+    
     public static boolean isValidEmailAddress(String email) {
         boolean result = true;
         try {
@@ -252,6 +282,7 @@ public static table users;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField emailtext;
+    private javax.swing.JTextField failLabelText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
