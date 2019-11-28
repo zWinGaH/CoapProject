@@ -17,7 +17,7 @@ import java.sql.Statement;
  *
  * @author Peaq PNB P2015
  */
-public class dbTable {
+public class table {
     
     public String tablename;
     public static int rowCount;
@@ -28,7 +28,7 @@ public class dbTable {
     db db = LoginInterface.db;
     Connection conn = db.conn;
     
-    public dbTable(String tablename) throws SQLException{
+    public table(String tablename) throws SQLException{
         this.tablename = tablename;
         this.rowCount = rowCount();
         this.columnCount = columnCount();

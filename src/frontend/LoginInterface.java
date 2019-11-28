@@ -19,7 +19,7 @@ import javax.mail.internet.InternetAddress;
 public class LoginInterface extends javax.swing.JFrame {
 
 public static db db = new db("coapproject");   
-public static dbTable users;
+public static table users;
 //RessourcenInterface rI;
 //LiveDataInterface lI;
 
@@ -29,7 +29,7 @@ public static dbTable users;
         this.setLocation(800, 400);
         
         try {
-            users = new dbTable("user");
+            users = new table("user");
         } catch (Exception ex){
             System.err.println("Can't connect to server or wrong tablename!");
             System.exit(0);
