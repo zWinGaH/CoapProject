@@ -105,11 +105,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="usernameText">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="username"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="EMailText">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="EMail"/>
       </Properties>
       <Events>
@@ -118,6 +120,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="passwordText">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="password"/>
       </Properties>
       <Events>
@@ -137,9 +144,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backButtonActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="registrateButton">
       <Properties>

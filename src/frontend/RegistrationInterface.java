@@ -14,11 +14,8 @@ public class RegistrationInterface extends javax.swing.JFrame {
     /**
      * Creates new form RegistrationInterface
      */
-    LoginInterface lI;
-    
     public RegistrationInterface() {
         initComponents();
-        lI = new LoginInterface();
     }
 
     /**
@@ -51,8 +48,10 @@ public class RegistrationInterface extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setText("EMail:");
 
+        usernameText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         usernameText.setText("username");
 
+        EMailText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         EMailText.setText("EMail");
         EMailText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +59,9 @@ public class RegistrationInterface extends javax.swing.JFrame {
             }
         });
 
+        passwordText.setEditable(false);
+        passwordText.setBackground(new java.awt.Color(255, 255, 255));
+        passwordText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         passwordText.setText("password");
         passwordText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,11 +73,6 @@ public class RegistrationInterface extends javax.swing.JFrame {
         backButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         backButton.setForeground(new java.awt.Color(255, 255, 255));
         backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
 
         registrateButton.setBackground(new java.awt.Color(0, 0, 0));
         registrateButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -146,11 +143,6 @@ public class RegistrationInterface extends javax.swing.JFrame {
     private void registrateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrateButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_registrateButtonActionPerformed
-
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        this.setVisible(false);
-        lI.setVisible(true);
-    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
