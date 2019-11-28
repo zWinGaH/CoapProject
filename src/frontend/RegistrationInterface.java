@@ -5,6 +5,10 @@
  */
 package frontend;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Peaq PNB P2015
@@ -141,8 +145,29 @@ public class RegistrationInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordTextActionPerformed
 
     private void registrateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrateButtonActionPerformed
-        // TODO add your handling code here:
+        //Insert user into database
+
+
+
+
+
+
+
+
+
+
+
+
     }//GEN-LAST:event_registrateButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        try {
+            this.setVisible(false);
+            new LoginInterface().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrationInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments

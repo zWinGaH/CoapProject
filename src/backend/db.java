@@ -38,6 +38,7 @@ public class db {
             //System.out.println("VendorError: " + ex.getErrorCode());
         }
     }
+    /*
 	 private static final String extendStringTo14( String s )
 	  {
 	    if( null == s ) s = "";
@@ -50,7 +51,7 @@ public class db {
 	      return s.substring( 0, 2 * iWantLen );
 	    return s;
 	  }
-        /*
+        
 	private void showTable(ResultSet rs) throws SQLException {
 		ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
 		  int i, n = rsmd.getColumnCount();
@@ -91,7 +92,6 @@ public class db {
         }
         
         public resource[] getActiveIds() throws SQLException{
-            
             resource[] activeArray = new resource[countActives()];
             
             Statement stmt = conn.createStatement();

@@ -5,7 +5,10 @@
  */
 package frontend;
 
-import backend.db;
+import backend.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
@@ -15,16 +18,23 @@ import javax.mail.internet.InternetAddress;
  */
 public class LoginInterface extends javax.swing.JFrame {
 
-RegistrationInterface regI;
-public static db db = new db("coapproject");    
+public static db db = new db("coapproject");   
+public static dbTable users;
 //RessourcenInterface rI;
 //LiveDataInterface lI;
+
     
-    public LoginInterface() {
+    public LoginInterface() throws SQLException {
         initComponents();
         this.setLocation(800, 400);
         
-        regI = new RegistrationInterface();
+        try {
+            users = new dbTable("user");
+        } catch (Exception ex){
+            System.err.println("Can't connect to server or wrong tablename!");
+            System.exit(0);
+        }
+        
         //rI = new RessourcenInterface();
         // = new LiveDataInterface();
     }
@@ -40,7 +50,7 @@ public static db db = new db("coapproject");
         failtext = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        passworttext = new javax.swing.JTextField();
+        passwordtext = new javax.swing.JTextField();
         registrierButton = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
@@ -71,10 +81,10 @@ public static db db = new db("coapproject");
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setText("Email:");
 
-        passworttext.setText("Password");
-        passworttext.addActionListener(new java.awt.event.ActionListener() {
+        passwordtext.setText("Password");
+        passwordtext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passworttextActionPerformed(evt);
+                passwordtextActionPerformed(evt);
             }
         });
 
@@ -103,7 +113,7 @@ public static db db = new db("coapproject");
                                     .addComponent(jLabel1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(passworttext)
+                                    .addComponent(passwordtext)
                                     .addComponent(emailtext)))
                             .addComponent(failtext, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(76, Short.MAX_VALUE))
@@ -122,7 +132,7 @@ public static db db = new db("coapproject");
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passworttext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(failtext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,6 +159,18 @@ public static db db = new db("coapproject");
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String email = emailtext.getText();
+        String password = passwordtext.getText();
+        
+        for (String rows[] : users.rowNames){
+            System.out.println(rows[1]);
+            System.out.println(email);
+            
+            if(rows[1] == email || rows[2] == email){
+                System.out.println("true");
+            }else{
+                System.out.println("false");
+            }
+        }
         /*if(isValidEmailAddress(email)){
             //rI.setVisible(true);
             this.setVisible(false);
@@ -158,14 +180,14 @@ public static db db = new db("coapproject");
         }*/
     }//GEN-LAST:event_loginButtonActionPerformed
 
-    private void passworttextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passworttextActionPerformed
+    private void passwordtextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordtextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passworttextActionPerformed
+    }//GEN-LAST:event_passwordtextActionPerformed
 
     private void registrierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrierButtonActionPerformed
         // TODO add your handling code here:
-        //this.setVisible(false);
-        //regI.setVisible(true);
+        this.setVisible(false);
+        new RegistrationInterface().setVisible(true);
     }//GEN-LAST:event_registrierButtonActionPerformed
 
     public static boolean isValidEmailAddress(String email) {
@@ -207,7 +229,11 @@ public static db db = new db("coapproject");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginInterface().setVisible(true);
+                try {
+                    new LoginInterface().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -220,7 +246,7 @@ public static db db = new db("coapproject");
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton loginButton;
-    private javax.swing.JTextField passworttext;
+    private javax.swing.JTextField passwordtext;
     private javax.swing.JButton registrierButton;
     // End of variables declaration//GEN-END:variables
 }
