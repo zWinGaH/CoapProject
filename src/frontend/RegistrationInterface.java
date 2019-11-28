@@ -5,6 +5,10 @@
  */
 package frontend;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Peaq PNB P2015
@@ -14,11 +18,11 @@ public class RegistrationInterface extends javax.swing.JFrame {
     /**
      * Creates new form RegistrationInterface
      */
-    LoginInterface lI;
+    //LoginInterface lI;
     
     public RegistrationInterface() {
         initComponents();
-        lI = new LoginInterface();
+        //lI = new LoginInterface();
     }
 
     /**
@@ -144,12 +148,28 @@ public class RegistrationInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordTextActionPerformed
 
     private void registrateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrateButtonActionPerformed
-        // TODO add your handling code here:
+        //Insert user into database
+
+
+
+
+
+
+
+
+
+
+
+
     }//GEN-LAST:event_registrateButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        this.setVisible(false);
-        lI.setVisible(true);
+        try {
+            this.setVisible(false);
+            new LoginInterface().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrationInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
