@@ -231,17 +231,6 @@ public static table users;
         return false;
     }
     
-    public static boolean isValidEmailAddress(String email) {
-        boolean result = true;
-        try {
-           InternetAddress emailAddr = new InternetAddress(email);
-           emailAddr.validate();
-        } catch (AddressException ex) {
-           result = false;
-        }
-        return result;
-     }
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

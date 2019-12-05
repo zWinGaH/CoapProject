@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import backend.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 /**
  *
  * @author Peaq PNB P2015
@@ -44,6 +46,7 @@ public class RegistrationInterface extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         registrateButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        failText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -69,7 +72,6 @@ public class RegistrationInterface extends javax.swing.JFrame {
             }
         });
 
-        passwordText.setBackground(new java.awt.Color(255, 255, 255));
         passwordText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         passwordText.setText("password");
         passwordText.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +103,10 @@ public class RegistrationInterface extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Registration");
 
+        failText.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        failText.setForeground(new java.awt.Color(255, 51, 51));
+        failText.setText(" ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -112,6 +118,7 @@ public class RegistrationInterface extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(72, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(failText, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(registrateButton)
                         .addGap(61, 61, 61)
@@ -150,6 +157,8 @@ public class RegistrationInterface extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(registrateButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(failText, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -177,13 +186,19 @@ public class RegistrationInterface extends javax.swing.JFrame {
 
     private void registrateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrateButtonActionPerformed
         //Insert user into database
-        newuser = new user(usernameText.getText(), emailText.getText(), passwordText.getText());
-        try {
-            db.insertUser(newuser);
-        } catch (SQLException ex) {
-            Logger.getLogger(RegistrationInterface.class.getName()).log(Level.SEVERE, null, ex);
+        String email = emailText.getText();
+        if (isValidEmailAddress(email)){
+            newuser = new user(usernameText.getText(), email, passwordText.getText());
+            try {
+                db.insertUser(newuser);
+                backButtonActionPerformed(evt);
+            } catch (SQLException ex) {
+                Logger.getLogger(RegistrationInterface.class.getName()).log(Level.SEVERE, null, ex);
+                failText.setText("E-Mail or username already exists!");
+            }
         }
-        backButtonActionPerformed(evt);
+        else
+            failText.setText("Invalid adress!");
     }//GEN-LAST:event_registrateButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -195,6 +210,16 @@ public class RegistrationInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_backButtonActionPerformed
 
+    public static boolean isValidEmailAddress(String email) {
+        boolean result = true;
+        try {
+           InternetAddress emailAddr = new InternetAddress(email);
+           emailAddr.validate();
+        } catch (AddressException ex) {
+           result = false;
+        }
+        return result;
+    }
     /**
      * @param args the command line arguments
      */
@@ -233,6 +258,7 @@ public class RegistrationInterface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JTextField emailText;
+    private javax.swing.JLabel failText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

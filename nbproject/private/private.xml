@@ -3,7 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Vanessa/Documents/HTL-Hallein_5AHWII/SWP1_Hehwi/CoapProject/src/frontend/LoginInterface.java</file>
+=======
+            <file>file:/C:/Users/Peaq%20PNB%20P2015/Documents/NetBeansProjects/CoapProject/src/backend/db.java</file>
+            <file>file:/C:/Users/Peaq%20PNB%20P2015/Documents/NetBeansProjects/CoapProject/src/frontend/RegistrationInterface.java</file>
+            <file>file:/C:/Users/Peaq%20PNB%20P2015/Documents/NetBeansProjects/CoapProject/src/frontend/MainPageInterface.java</file>
+            <file>file:/C:/Users/Peaq%20PNB%20P2015/Documents/NetBeansProjects/CoapProject/src/img/delete.png</file>
+            <file>file:/C:/Users/Peaq%20PNB%20P2015/Documents/NetBeansProjects/CoapProject/src/backend/user.java</file>
+            <file>file:/C:/Users/Peaq%20PNB%20P2015/Documents/NetBeansProjects/CoapProject/src/frontend/LoginInterface.java</file>
+            <file>file:/C:/Users/Peaq%20PNB%20P2015/Documents/NetBeansProjects/CoapProject/src/img/add.png</file>
+            <file>file:/C:/Users/Peaq%20PNB%20P2015/Documents/NetBeansProjects/CoapProject/src/img/refresh.png</file>
+            <file>file:/C:/Users/Peaq%20PNB%20P2015/Documents/NetBeansProjects/CoapProject/src/img/Stop.png</file>
+>>>>>>> 1a30d368d3a2799796dc1de9311bd8743a0eac36
         </group>
     </open-files>
 </project-private>
