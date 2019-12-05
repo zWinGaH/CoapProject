@@ -20,8 +20,7 @@ public class LoginInterface extends javax.swing.JFrame {
 
 public static db db = new db("coapproject");   
 public static table users;
-//RessourcenInterface rI;
-//LiveDataInterface lI;
+public static String useremail;
 
     
     public LoginInterface() throws SQLException {
@@ -34,9 +33,6 @@ public static table users;
             System.err.println("Can't connect to server or wrong tablename!");
             System.exit(0);
         }
-        
-        //rI = new RessourcenInterface();
-        // = new LiveDataInterface();
     }
     
     @SuppressWarnings("unchecked")
@@ -182,22 +178,11 @@ public static table users;
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        
         if (authorised()){
             this.setVisible(false);
             new MainPageInterface().setVisible(true);
         }else
             failLabelText.setText("Wrong email or password!");
-            
-        
-        
-        /*if(isValidEmailAddress(email)){
-            //rI.setVisible(true);
-            this.setVisible(false);
-            //lI.email = email;
-        } else{
-            failtext.setText("no valid email");
-        }*/
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void passwordtextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordtextActionPerformed
@@ -224,8 +209,10 @@ public static table users;
             String password = passwordtext.getText();
             
             if(rows[1].compareTo(email) == 0 || rows[2].compareTo(email) == 0){
-                if(rows[3].compareTo(password) == 0)
+                if(rows[3].compareTo(password) == 0){
+                    useremail = rows[2];
                     return true;
+                }
             }
         }
         return false;
