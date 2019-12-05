@@ -42,15 +42,17 @@ public class RegistrationInterface extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         usernameText = new javax.swing.JTextField();
         emailText = new javax.swing.JTextField();
-        passwordText = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
         registrateButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         failText = new javax.swing.JLabel();
+        passwordText = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel1.setText("Username:");
@@ -61,9 +63,11 @@ public class RegistrationInterface extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setText("EMail:");
 
+        usernameText.setForeground(new java.awt.Color(153, 153, 153));
         usernameText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         usernameText.setText("username");
 
+        emailText.setForeground(new java.awt.Color(153, 153, 153));
         emailText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         emailText.setText("EMail");
         emailText.addActionListener(new java.awt.event.ActionListener() {
@@ -72,28 +76,22 @@ public class RegistrationInterface extends javax.swing.JFrame {
             }
         });
 
-        passwordText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        passwordText.setText("password");
-        passwordText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextActionPerformed(evt);
-            }
-        });
-
-        backButton.setBackground(new java.awt.Color(0, 0, 0));
+        backButton.setBackground(new java.awt.Color(255, 255, 255));
         backButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        backButton.setForeground(new java.awt.Color(255, 255, 255));
-        backButton.setText("Back");
+        backButton.setText("  Back  ");
+        backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        backButton.setBorderPainted(false);
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
-        registrateButton.setBackground(new java.awt.Color(0, 0, 0));
+        registrateButton.setBackground(new java.awt.Color(255, 255, 255));
         registrateButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        registrateButton.setForeground(new java.awt.Color(255, 255, 255));
-        registrateButton.setText("Registrate");
+        registrateButton.setText("  Registrate  ");
+        registrateButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        registrateButton.setBorderPainted(false);
         registrateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrateButtonActionPerformed(evt);
@@ -103,7 +101,7 @@ public class RegistrationInterface extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Registration");
 
-        failText.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        failText.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         failText.setForeground(new java.awt.Color(255, 51, 51));
         failText.setText(" ");
 
@@ -111,18 +109,10 @@ public class RegistrationInterface extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(72, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(failText, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(registrateButton)
-                        .addGap(61, 61, 61)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -132,9 +122,21 @@ public class RegistrationInterface extends javax.swing.JFrame {
                         .addGap(64, 64, 64)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(usernameText)
-                            .addComponent(passwordText)
-                            .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(emailText, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                            .addComponent(passwordText)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(registrateButton)))
                 .addGap(68, 68, 68))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(failText, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,8 +153,8 @@ public class RegistrationInterface extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -179,10 +181,6 @@ public class RegistrationInterface extends javax.swing.JFrame {
     private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailTextActionPerformed
-
-    private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextActionPerformed
 
     private void registrateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrateButtonActionPerformed
         //Insert user into database
@@ -266,7 +264,7 @@ public class RegistrationInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField passwordText;
+    private javax.swing.JPasswordField passwordText;
     private javax.swing.JButton registrateButton;
     private javax.swing.JTextField usernameText;
     // End of variables declaration//GEN-END:variables
