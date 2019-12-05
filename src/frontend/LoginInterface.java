@@ -18,7 +18,9 @@ import javax.mail.internet.InternetAddress;
  */
 public class LoginInterface extends javax.swing.JFrame {
 
-public static db db = new db("coapproject");   
+//database object
+public static db db = new db("coapproject"); 
+
 public static table users;
 public static String useremail;
 
@@ -27,6 +29,7 @@ public static String useremail;
         initComponents();
         this.setLocation(550, 300);
         
+        //user object
         try {
             users = new table("user");
         } catch (Exception ex){
@@ -178,6 +181,7 @@ public static String useremail;
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        //if valid logindata close interface and open main
         if (authorised()){
             this.setVisible(false);
             new MainPageInterface().setVisible(true);
@@ -190,7 +194,7 @@ public static String useremail;
     }//GEN-LAST:event_passwordtextActionPerformed
 
     private void registrierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrierButtonActionPerformed
-        // TODO add your handling code here:
+        //Registration-Interface
         this.setVisible(false);
         new RegistrationInterface().setVisible(true);
     }//GEN-LAST:event_registrierButtonActionPerformed
@@ -203,6 +207,7 @@ public static String useremail;
         // TODO add your handling code here:
     }//GEN-LAST:event_failLabelTextActionPerformed
 
+    //check if user is already stored into database
     public boolean authorised(){
         for (String rows[] : users.rowNames){
             String email = emailtext.getText();
