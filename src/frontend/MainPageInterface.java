@@ -6,7 +6,10 @@
 package frontend;
 
 import backend.table;
+import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,7 +28,13 @@ public class MainPageInterface extends javax.swing.JFrame {
         initComponents();
         this.setLocation(300, 200);
         
+        //update model
         RefreshButton.doClick();
+        
+        //Set E-Mail
+        userEmailText.setText(LoginInterface.useremail);
+        
+        //ToolTips for buttons
         RefreshButton.setToolTipText("Refresh table");
         AddButton.setToolTipText("Add new resource");
         DeleteButton.setToolTipText("Delete resource");
@@ -54,6 +63,9 @@ public class MainPageInterface extends javax.swing.JFrame {
         WebButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         NotificationText = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        userEmailText = new javax.swing.JLabel();
+        LogoutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +147,9 @@ public class MainPageInterface extends javax.swing.JFrame {
 
             }
         ));
+        resourceTable.setFocusable(false);
+        resourceTable.setShowHorizontalLines(false);
+        resourceTable.setShowVerticalLines(false);
         jScrollPane1.setViewportView(resourceTable);
 
         WebButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -150,12 +165,33 @@ public class MainPageInterface extends javax.swing.JFrame {
         });
 
         NotificationText.setEditable(false);
-        NotificationText.setColumns(20);
-        NotificationText.setRows(5);
+        NotificationText.setColumns(1);
+        NotificationText.setRows(4);
+        NotificationText.setToolTipText("Notification-Box");
         NotificationText.setBorder(null);
         NotificationText.setFocusable(false);
-        NotificationText.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jScrollPane2.setViewportView(NotificationText);
+
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("©Tobias Zwinger, Vanessa Lassacher, Semir Beganovic");
+
+        userEmailText.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        userEmailText.setForeground(new java.awt.Color(102, 102, 102));
+
+        LogoutButton.setBackground(new java.awt.Color(255, 255, 255));
+        LogoutButton.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        LogoutButton.setText("Logout");
+        LogoutButton.setToolTipText("Logout");
+        LogoutButton.setAlignmentY(0.0F);
+        LogoutButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        LogoutButton.setContentAreaFilled(false);
+        LogoutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LogoutButton.setMargin(new java.awt.Insets(10, 14, 10, 14));
+        LogoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,43 +200,55 @@ public class MainPageInterface extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1223, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(RefreshButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AddButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DeleteButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PlayButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(StopButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(WebButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(RefreshButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AddButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DeleteButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(PlayButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(StopButton)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 771, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(WebButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(userEmailText, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(WebButton)
-                    .addComponent(jLabel1))
-                .addGap(46, 46, 46)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userEmailText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(AddButton)
                     .addComponent(RefreshButton)
                     .addComponent(DeleteButton)
                     .addComponent(PlayButton)
                     .addComponent(StopButton)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(WebButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -217,50 +265,69 @@ public class MainPageInterface extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    // Refresh whole model
     private void RefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshButtonActionPerformed
-        // Refresh whole Table
-        //doneLabel.setText("refreshed data");
+        //Create resourcetable object
         try {
             hosttable = new table("resources");
         } catch (Exception ex){
             System.err.println("Hosttable not found or no server-connection!");
             System.exit(0);
         }
+        
+        //Get Model
         DefaultTableModel model = (DefaultTableModel) resourceTable.getModel();
+        
+        //Delete existing Data
         model.setRowCount(0);
         model.setColumnCount(0);
+        
+        //Fill resources
         for(String columnName: hosttable.columnNames){
             model.addColumn(columnName);
         }
         for(String[] rowName: hosttable.rowNames){
             model.addRow(rowName);
         }
+        
+        //refresh Notificationbox
+        boxUpdate("Model updated");
     }//GEN-LAST:event_RefreshButtonActionPerformed
-
+    // Stop running resources
     private void StopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopButtonActionPerformed
-        // Stop running resources
-        boxUpdate("stop");
+        
     }//GEN-LAST:event_StopButtonActionPerformed
-
+    // Add new resource
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
-        // Add new resource
-        boxUpdate("add");
+        boxUpdate("Adding resource ...");
     }//GEN-LAST:event_AddButtonActionPerformed
-
+    // Delete selected
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
-        // Delete selected
-        boxUpdate("delete");
+        
     }//GEN-LAST:event_DeleteButtonActionPerformed
-
+    // Start resource
     private void PlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayButtonActionPerformed
-        // Start resource
+        
     }//GEN-LAST:event_PlayButtonActionPerformed
-
+    // Webservice?
     private void WebButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WebButtonActionPerformed
-        // Webservice?
+        
     }//GEN-LAST:event_WebButtonActionPerformed
+    //Logout
+    private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
+        boxUpdate("logout ...");
+        
+        //close mainInterface
+        this.setVisible(false);
+        //Open login-Interface
+        try {
+            new LoginInterface().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainPageInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_LogoutButtonActionPerformed
 
+    //Function to update the notificationbox
     public void boxUpdate(String notification){
         for(int i = 0; i < notificationArray.length-1; i++){
             if (notificationArray[i+1] != null)
@@ -274,6 +341,7 @@ public class MainPageInterface extends javax.swing.JFrame {
                                     notificationArray[2] + "\n" + 
                                     notificationArray[3]);
     }
+    
     /**
      * @param args the command line arguments
      */
@@ -312,15 +380,18 @@ public class MainPageInterface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;
     private javax.swing.JButton DeleteButton;
+    private javax.swing.JButton LogoutButton;
     private javax.swing.JTextArea NotificationText;
     private javax.swing.JButton PlayButton;
     private javax.swing.JButton RefreshButton;
     private javax.swing.JButton StopButton;
     private javax.swing.JButton WebButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable resourceTable;
+    private javax.swing.JLabel userEmailText;
     // End of variables declaration//GEN-END:variables
 }

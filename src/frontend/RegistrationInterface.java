@@ -200,6 +200,7 @@ public class RegistrationInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_registrateButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        //Go back to login
         try {
             this.setVisible(false);
             new LoginInterface().setVisible(true);
@@ -208,6 +209,7 @@ public class RegistrationInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_backButtonActionPerformed
 
+    //If EMail has valid EMail-style
     public static boolean isValidEmailAddress(String email) {
         boolean result = true;
         try {
