@@ -6,6 +6,7 @@
 package frontend;
 
 import backend.table;
+import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,6 +19,7 @@ public class MainPageInterface extends javax.swing.JFrame {
      * Creates new form MainPageInterface
      */
     public static table hosttable;
+    private String[] notificationArray = new String[4];
     
     public MainPageInterface() {
         initComponents();
@@ -50,6 +52,8 @@ public class MainPageInterface extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         resourceTable = new javax.swing.JTable();
         WebButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        NotificationText = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,6 +149,14 @@ public class MainPageInterface extends javax.swing.JFrame {
             }
         });
 
+        NotificationText.setEditable(false);
+        NotificationText.setColumns(20);
+        NotificationText.setRows(5);
+        NotificationText.setBorder(null);
+        NotificationText.setFocusable(false);
+        NotificationText.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jScrollPane2.setViewportView(NotificationText);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -152,22 +164,24 @@ public class MainPageInterface extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(WebButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1223, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(RefreshButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(AddButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DeleteButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PlayButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(StopButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(RefreshButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(AddButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DeleteButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(PlayButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(StopButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 771, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(WebButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -177,13 +191,14 @@ public class MainPageInterface extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(WebButton)
                     .addComponent(jLabel1))
-                .addGap(113, 113, 113)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(AddButton)
                     .addComponent(RefreshButton)
                     .addComponent(DeleteButton)
                     .addComponent(PlayButton)
-                    .addComponent(StopButton))
+                    .addComponent(StopButton)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
                 .addContainerGap())
@@ -225,14 +240,17 @@ public class MainPageInterface extends javax.swing.JFrame {
 
     private void StopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopButtonActionPerformed
         // Stop running resources
+        boxUpdate("stop");
     }//GEN-LAST:event_StopButtonActionPerformed
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         // Add new resource
+        boxUpdate("add");
     }//GEN-LAST:event_AddButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         // Delete selected
+        boxUpdate("delete");
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void PlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayButtonActionPerformed
@@ -243,6 +261,19 @@ public class MainPageInterface extends javax.swing.JFrame {
         // Webservice?
     }//GEN-LAST:event_WebButtonActionPerformed
 
+    public void boxUpdate(String notification){
+        for(int i = 0; i < notificationArray.length-1; i++){
+            if (notificationArray[i+1] != null)
+                notificationArray[i] = notificationArray[i+1];
+            else
+                notificationArray[i] = "";
+        }
+        notificationArray[3] = notification;
+        NotificationText.setText(   notificationArray[0] + "\n" + 
+                                    notificationArray[1] + "\n" +
+                                    notificationArray[2] + "\n" + 
+                                    notificationArray[3]);
+    }
     /**
      * @param args the command line arguments
      */
@@ -281,6 +312,7 @@ public class MainPageInterface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;
     private javax.swing.JButton DeleteButton;
+    private javax.swing.JTextArea NotificationText;
     private javax.swing.JButton PlayButton;
     private javax.swing.JButton RefreshButton;
     private javax.swing.JButton StopButton;
@@ -288,6 +320,7 @@ public class MainPageInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable resourceTable;
     // End of variables declaration//GEN-END:variables
 }
