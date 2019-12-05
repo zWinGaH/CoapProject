@@ -73,9 +73,10 @@ public static table users;
             }
         });
 
-        loginButton.setBackground(new java.awt.Color(0, 0, 0));
+        loginButton.setBackground(new java.awt.Color(255, 255, 255));
         loginButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         loginButton.setText("Login");
+        loginButton.setBorder(null);
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonActionPerformed(evt);
@@ -83,7 +84,7 @@ public static table users;
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel3.setText("Email:");
+        jLabel3.setText("Email/Username:");
 
         passwordtext.setText("Password");
         passwordtext.addActionListener(new java.awt.event.ActionListener() {
@@ -92,10 +93,10 @@ public static table users;
             }
         });
 
-        registrierButton.setBackground(new java.awt.Color(0, 0, 0));
+        registrierButton.setBackground(new java.awt.Color(255, 255, 255));
         registrierButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        registrierButton.setForeground(new java.awt.Color(255, 255, 255));
         registrierButton.setText("New User");
+        registrierButton.setBorder(null);
         registrierButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrierButtonActionPerformed(evt);
@@ -142,7 +143,7 @@ public static table users;
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(emailtext, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(passwordtext, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,9 +175,7 @@ public static table users;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
