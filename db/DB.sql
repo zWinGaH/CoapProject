@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `coapproject` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `coapproject`;
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
 -- Host: localhost    Database: coapproject
@@ -112,7 +114,7 @@ CREATE TABLE `resources` (
   `upperLimit` varchar(45) DEFAULT NULL,
   `lowerLimit` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idresources`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,6 +123,7 @@ CREATE TABLE `resources` (
 
 LOCK TABLES `resources` WRITE;
 /*!40000 ALTER TABLE `resources` DISABLE KEYS */;
+INSERT INTO `resources` VALUES (1,'test','coap.me','://coap.me/','test',5,1,'0','0');
 /*!40000 ALTER TABLE `resources` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,8 +139,9 @@ CREATE TABLE `user` (
   `username` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`iduser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`iduser`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,6 +150,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'tobzw','tobiaszwinger.tz@gmail.com','1'),(2,'van','van@gmail.com','1'),(3,'semir','semir@sdfasd','password'),(4,'semir','sem@gmail.com','password'),(5,'admin','admin@gmail.com','4'),(6,'asdfa','EMail@gmx.at','password'),(10,'username','EMail@gmail.com','password'),(17,'hannes','hannes@gmail.com','1');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -158,4 +163,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-27 15:35:20
+-- Dump completed on 2019-12-18 15:56:12
