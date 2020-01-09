@@ -112,7 +112,7 @@ public class db {
             }
             return activeArray;
         }
-        
+        */
         public void insertResource(resource resource) throws SQLException {
             Statement stmt = conn.createStatement();
 	    String befehl = "INSERT INTO resources(name, protocol, adress, attribute, queryFrequency, datatype, output, upperLimit, lowerLimit) VALUES('" +
@@ -122,7 +122,7 @@ public class db {
 	    int count = stmt.executeUpdate(befehl);
 	    //System.out.println("Anzahl eingefuegter Datensätze: " + count);
         }
-        
+        /*
         public void insertActive(isActive active) throws SQLException {
             Statement stmt = conn.createStatement();
 	    String befehl = "INSERT INTO isactive(active, resources_idresources) VALUES('" + active.active + "','" + active.resources_idresources + "')";
@@ -136,13 +136,13 @@ public class db {
 	    int count = stmt.executeUpdate(befehl);
 	    System.out.println("Anzahl eingefuegter Datensätze: " + count);
         }
-        
+        */
         public void deleteResource(String id) throws SQLException{
             Statement stmt = conn.createStatement();
 	    String befehl = "DELETE FROM resources WHERE idresources = " + id;
             int count = stmt.executeUpdate(befehl);
             System.out.println("Anzahl gelöschter Datensätze: " + count);
-        }
+        }/*
         
         public static void countRows(String tablename) throws SQLException{
             Statement stmt = conn.createStatement();

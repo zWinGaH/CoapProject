@@ -24,9 +24,11 @@ public class MainPageInterface extends javax.swing.JFrame {
     public static table hosttable;
     private String[] notificationArray = new String[4];
     
+    public static boolean nRI;
+    
     public MainPageInterface() {
         initComponents();
-        this.setLocation(300, 200);
+        this.setLocation(150, 100);
         
         //update model
         RefreshButton.doClick();
@@ -157,7 +159,7 @@ public class MainPageInterface extends javax.swing.JFrame {
         WebButton.setBorder(null);
         WebButton.setBorderPainted(false);
         WebButton.setContentAreaFilled(false);
-        WebButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        WebButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         WebButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 WebButtonActionPerformed(evt);
@@ -185,7 +187,7 @@ public class MainPageInterface extends javax.swing.JFrame {
         LogoutButton.setAlignmentY(0.0F);
         LogoutButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         LogoutButton.setContentAreaFilled(false);
-        LogoutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LogoutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         LogoutButton.setMargin(new java.awt.Insets(10, 14, 10, 14));
         LogoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,6 +267,7 @@ public class MainPageInterface extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
     // Refresh whole model
     private void RefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshButtonActionPerformed
         //Create resourcetable object
@@ -299,15 +302,39 @@ public class MainPageInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_StopButtonActionPerformed
     // Add new resource
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
-        boxUpdate("Adding resource ...");
+        if (!nRI){
+            boxUpdate("Adding resource ...");
+            NewResourceInterface nri = new NewResourceInterface();
+            nri.setVisible(true);
+        }else
+            boxUpdate("Already adding new resource");
+        nRI = true;
     }//GEN-LAST:event_AddButtonActionPerformed
     // Delete selected
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+        String id = null;
+        int[] selRows = resourceTable.getSelectedRows();
         
+        for(int row : selRows){
+            id = (resourceTable.getValueAt(row, 0)).toString();
+            try {
+                LoginInterface.db.deleteResource(id);
+            } catch (SQLException ex) {
+                Logger.getLogger(MainPageInterface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        RefreshButtonActionPerformed(evt);
+        
+        if (selRows.length == 0) boxUpdate("Please select row to delete");
+        else {
+            boxUpdate("resource(s) deleted");
+        }
     }//GEN-LAST:event_DeleteButtonActionPerformed
     // Start resource
     private void PlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayButtonActionPerformed
         
+        //refresh Notificationbox
+        boxUpdate("Model updated");
     }//GEN-LAST:event_PlayButtonActionPerformed
     // Webservice?
     private void WebButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WebButtonActionPerformed
@@ -383,7 +410,7 @@ public class MainPageInterface extends javax.swing.JFrame {
     private javax.swing.JButton LogoutButton;
     private javax.swing.JTextArea NotificationText;
     private javax.swing.JButton PlayButton;
-    private javax.swing.JButton RefreshButton;
+    public javax.swing.JButton RefreshButton;
     private javax.swing.JButton StopButton;
     private javax.swing.JButton WebButton;
     private javax.swing.JLabel jLabel1;
