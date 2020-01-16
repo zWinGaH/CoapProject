@@ -120,7 +120,21 @@ public class db {
                     resource.attribute + "','" + resource.queryFrquzy + "','" + resource.datatype + "','" + 
                     resource.output + "','" + resource.upperLimit + "','" + resource.lowerLimit + "')";
 	    int count = stmt.executeUpdate(befehl);
+            
+            insertState();
 	    //System.out.println("Anzahl eingefuegter Datensätze: " + count);
+        }
+        
+        public void insertState() throws SQLException{
+            Statement stmt = conn.createStatement();
+	    
+            int lastId = 0;
+            ResultSet rs = stmt.executeQuery("select * from resources");
+            while(rs.next())
+                lastId = rs.getInt("idresources");
+            
+            String befehl = "INSERT INTO states (statename, idresource) VALUES (\"inactive\", '" + Integer.toString(lastId) + "')";
+	    int count = stmt.executeUpdate(befehl);
         }
         /*
         public void insertActive(isActive active) throws SQLException {
@@ -129,20 +143,33 @@ public class db {
 	    int count = stmt.executeUpdate(befehl);
 	    //System.out.println("Anzahl eingefuegter Datensätze: " + count);
         }
-        
-        public void setActive(String id, int active) throws SQLException {
-            Statement stmt = conn.createStatement();
-	    String befehl = "Update resources Set active=' " + active + " ' WHERE idresources = " + id;
-	    int count = stmt.executeUpdate(befehl);
-	    System.out.println("Anzahl eingefuegter Datensätze: " + count);
-        }
         */
+        public void setState(String id, boolean state) throws SQLException {
+            Statement stmt = conn.createStatement();
+            String query = null;
+            if (state)
+                query = "UPDATE states SET statename = 'active' WHERE idresource = " + id;
+            else
+                query = "UPDATE states SET statename = 'inactive' WHERE idresource = " + id;
+	    int count = stmt.executeUpdate(query);
+        }
+        
         public void deleteResource(String id) throws SQLException{
+            //First, we need to delete the state
+            deleteState(id);
+            
+            //now the entry
             Statement stmt = conn.createStatement();
 	    String befehl = "DELETE FROM resources WHERE idresources = " + id;
             int count = stmt.executeUpdate(befehl);
-            System.out.println("Anzahl gelöschter Datensätze: " + count);
-        }/*
+        }
+        
+        public void deleteState(String id) throws SQLException{
+            Statement stmt = conn.createStatement();
+	    String befehl = "DELETE FROM states WHERE idresource = " + id;
+            int count = stmt.executeUpdate(befehl);
+        }
+        /*
         
         public static void countRows(String tablename) throws SQLException{
             Statement stmt = conn.createStatement();

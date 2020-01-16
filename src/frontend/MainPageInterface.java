@@ -24,11 +24,15 @@ public class MainPageInterface extends javax.swing.JFrame {
     public static table hosttable;
     private String[] notificationArray = new String[4];
     
-    public static boolean nRI;
+    NewResourceInterface nRI;
+    LiveData ld;
     
     public MainPageInterface() {
         initComponents();
         this.setLocation(150, 100);
+        
+        ld = new LiveData();
+        nRI = new NewResourceInterface();
         
         //update model
         RefreshButton.doClick();
@@ -78,8 +82,7 @@ public class MainPageInterface extends javax.swing.JFrame {
         jLabel1.setText("Resources");
 
         RefreshButton.setBackground(new java.awt.Color(255, 255, 255));
-        RefreshButton.setForeground(new java.awt.Color(255, 255, 255));
-        RefreshButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/refresh.png"))); // NOI18N
+        RefreshButton.setText("Ref");
         RefreshButton.setBorder(null);
         RefreshButton.setBorderPainted(false);
         RefreshButton.setContentAreaFilled(false);
@@ -91,7 +94,7 @@ public class MainPageInterface extends javax.swing.JFrame {
         });
 
         StopButton.setBackground(new java.awt.Color(255, 255, 255));
-        StopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Stop.png"))); // NOI18N
+        StopButton.setText("Stp");
         StopButton.setBorder(null);
         StopButton.setBorderPainted(false);
         StopButton.setContentAreaFilled(false);
@@ -103,7 +106,7 @@ public class MainPageInterface extends javax.swing.JFrame {
         });
 
         AddButton.setBackground(new java.awt.Color(255, 255, 255));
-        AddButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
+        AddButton.setText("Add");
         AddButton.setBorder(null);
         AddButton.setBorderPainted(false);
         AddButton.setContentAreaFilled(false);
@@ -115,7 +118,7 @@ public class MainPageInterface extends javax.swing.JFrame {
         });
 
         DeleteButton.setBackground(new java.awt.Color(255, 255, 255));
-        DeleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
+        DeleteButton.setText("Del");
         DeleteButton.setBorder(null);
         DeleteButton.setBorderPainted(false);
         DeleteButton.setContentAreaFilled(false);
@@ -127,7 +130,7 @@ public class MainPageInterface extends javax.swing.JFrame {
         });
 
         PlayButton.setBackground(new java.awt.Color(255, 255, 255));
-        PlayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/play.png"))); // NOI18N
+        PlayButton.setText("Pla");
         PlayButton.setBorder(null);
         PlayButton.setBorderPainted(false);
         PlayButton.setContentAreaFilled(false);
@@ -155,7 +158,6 @@ public class MainPageInterface extends javax.swing.JFrame {
         jScrollPane1.setViewportView(resourceTable);
 
         WebButton.setBackground(new java.awt.Color(255, 255, 255));
-        WebButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/web.png"))); // NOI18N
         WebButton.setBorder(null);
         WebButton.setBorderPainted(false);
         WebButton.setContentAreaFilled(false);
@@ -204,15 +206,15 @@ public class MainPageInterface extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1223, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(RefreshButton)
+                        .addComponent(RefreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(AddButton)
+                        .addGap(2, 2, 2)
+                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DeleteButton)
+                        .addComponent(PlayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PlayButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(StopButton)
+                        .addComponent(StopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -242,13 +244,13 @@ public class MainPageInterface extends javax.swing.JFrame {
                         .addComponent(userEmailText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(AddButton)
-                    .addComponent(RefreshButton)
-                    .addComponent(DeleteButton)
-                    .addComponent(PlayButton)
-                    .addComponent(StopButton)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WebButton))
+                    .addComponent(WebButton)
+                    .addComponent(RefreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PlayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                 .addContainerGap())
@@ -289,26 +291,35 @@ public class MainPageInterface extends javax.swing.JFrame {
         for(String columnName: hosttable.columnNames){
             model.addColumn(columnName);
         }
-        for(String[] rowName: hosttable.rowNames){
+        model.addColumn("state");
+        for(String[] rowName: hosttable.rowNames)
             model.addRow(rowName);
-        }
         
         //refresh Notificationbox
         boxUpdate("Model updated");
     }//GEN-LAST:event_RefreshButtonActionPerformed
-    // Stop running resources
+    
+// Stop running resources
     private void StopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopButtonActionPerformed
-        
+        if (ld.isVisible()) ld.setVisible(false);
+        for(int i = 0; i < hosttable.rowNames.length; i++){
+            String id = (resourceTable.getValueAt(i, 0)).toString();
+            try {
+                LoginInterface.db.setState(id, false);
+            } catch (SQLException ex) {
+                Logger.getLogger(LiveData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        RefreshButtonActionPerformed(evt);
     }//GEN-LAST:event_StopButtonActionPerformed
     // Add new resource
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
-        if (!nRI){
+        if (!nRI.isVisible()){
             boxUpdate("Adding resource ...");
             NewResourceInterface nri = new NewResourceInterface();
             nri.setVisible(true);
         }else
             boxUpdate("Already adding new resource");
-        nRI = true;
     }//GEN-LAST:event_AddButtonActionPerformed
     // Delete selected
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
@@ -333,8 +344,34 @@ public class MainPageInterface extends javax.swing.JFrame {
     // Start resource
     private void PlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayButtonActionPerformed
         
-        //refresh Notificationbox
-        boxUpdate("Model updated");
+        //LiveDataInterface.running = true;
+        
+        String id = null;
+        int[] selRows = resourceTable.getSelectedRows();
+        if (selRows.length == 0){
+            boxUpdate("Please select row to set resource active");
+        }
+        else {
+            if (!ld.isVisible()) ld.setVisible(true);
+            for(int row : selRows){
+                id = (resourceTable.getValueAt(row, 0)).toString();
+                try {
+                    LoginInterface.db.setState(id, true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainPageInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            RefreshButtonActionPerformed(evt);
+            boxUpdate("running ...");
+        }
+        /*
+        try {
+            //check which are active and create array in Live Data Interface with the active ones
+            LiveDataInterface.activeArray = db.getActiveIds();
+        } catch (SQLException ex) {
+            Logger.getLogger(RessourcenInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
     }//GEN-LAST:event_PlayButtonActionPerformed
     // Webservice?
     private void WebButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WebButtonActionPerformed
@@ -409,9 +446,9 @@ public class MainPageInterface extends javax.swing.JFrame {
     private javax.swing.JButton DeleteButton;
     private javax.swing.JButton LogoutButton;
     private javax.swing.JTextArea NotificationText;
-    private javax.swing.JButton PlayButton;
+    public javax.swing.JButton PlayButton;
     public javax.swing.JButton RefreshButton;
-    private javax.swing.JButton StopButton;
+    public static javax.swing.JButton StopButton;
     private javax.swing.JButton WebButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

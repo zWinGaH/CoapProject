@@ -68,21 +68,30 @@ public class table {
     private String[][] rowNames() throws SQLException{
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM " + this.tablename);
-        String rowNames[][] = new String[this.rowCount][this.columnCount];
+        String rowNames[][] = new String[this.rowCount][this.columnCount+1];
         int i = 0;
         while (rs.next()) {
             for (int j = 0; j < this.columnCount; j++){
                 rowNames[i][j] = rs.getString(this.columnNames[j]);
             }
-            
+            rowNames[i][this.columnCount] = getstate(rowNames[i][0]);
             //System.out.println(rs.getString("name"));
             i++;
         }
         return rowNames;
     }
     
-   
+    public String getstate(String i) throws SQLException{
+        int j = Integer.parseInt(i);
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT statename FROM states WHERE idresource = " + j);
+        String state = null;
+        while (rs.next())
+            state = rs.getString("statename");
+        return state;
+    }
     
+   
     public static void main(String[] args) throws SQLException {
         //testing
         /*table hosttable = new table("hosts");
